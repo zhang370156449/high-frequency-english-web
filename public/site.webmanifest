@@ -1,0 +1,22 @@
+{
+  "name": "高频英语句子",
+  "short_name": "高频英语",
+  "description": "高频口语句子学习与听力训练",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F5F7FB",
+  "theme_color": "#2563EB",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
