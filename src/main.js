@@ -1,5 +1,14 @@
 import './styles.css';
 
+const BASE_PATH = import.meta.env.BASE_URL || './';
+
+function assetUrl(src) {
+  if (!src) return '';
+  if (/^https?:/i.test(src)) return src;
+  const clean = src.startsWith('/') ? src.slice(1) : src;
+  return new URL(clean, window.location.origin + BASE_PATH).toString();
+}
+
 const state = {
   data: null,
   route: 'home',
@@ -57,7 +66,7 @@ function playAudio(src, statusNode) {
     statusNode.textContent = '音频缺失';
     return;
   }
-  const audio = new Audio(src);
+  const audio = new Audio(assetUrl(src));
   statusNode.textContent = '正在播放';
   audio.addEventListener('ended', () => {
     statusNode.textContent = '播放完成';
@@ -390,7 +399,7 @@ function render() {
 
 async function boot() {
   render();
-  const response = await fetch('/data/course_pack_web.json');
+  const response = await fetch(assetUrl('/data/course_pack_web.json'));
   state.data = await response.json();
   buildListeningQueue();
   render();
