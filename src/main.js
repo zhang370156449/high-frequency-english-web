@@ -1,12 +1,12 @@
 import './styles.css';
 
-const BASE_PATH = import.meta.env.BASE_URL || './';
+const BASE_URL = new URL(import.meta.env.BASE_URL || './', window.location.href);
 
 function assetUrl(src) {
   if (!src) return '';
   if (/^https?:/i.test(src)) return src;
   const clean = src.startsWith('/') ? src.slice(1) : src;
-  return new URL(clean, window.location.origin + BASE_PATH).toString();
+  return new URL(clean, BASE_URL).toString();
 }
 
 const state = {
